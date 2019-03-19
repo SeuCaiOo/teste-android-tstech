@@ -4,11 +4,14 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import br.com.seucaio.icarmanager.R
 import br.com.seucaio.icarmanager.data.remote.ApiService
 import br.com.seucaio.icarmanager.data.remote.model.Car
+import br.com.seucaio.icarmanager.ui.add.CarAddActivity
 import br.com.seucaio.icarmanager.ui.list.CarListAdapter
 import br.com.seucaio.icarmanager.ui.detail.CarDetailActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -42,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         progress_car_list.visibility = View.INVISIBLE
     }
 
-
     private fun getCars() {
         subscription = service.getCars()
             .subscribeOn(Schedulers.io())
@@ -63,6 +65,22 @@ class MainActivity : AppCompatActivity() {
                 {}
             )
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+            R.id.action_add -> {
+                startActivity<CarAddActivity>()
+                true
+            }
+        else -> super.onOptionsItemSelected(item)
+    }
+
 
 
     override fun onPause() {

@@ -10,13 +10,13 @@ import br.com.seucaio.icarmanager.Constants
 import br.com.seucaio.icarmanager.R
 import br.com.seucaio.icarmanager.data.remote.ApiService
 import br.com.seucaio.icarmanager.data.remote.model.Proposta
+import br.com.seucaio.icarmanager.ui.update.CarUpdateActivity
 import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_car_detail.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.adapter_car_list.view.*
+import org.jetbrains.anko.startActivity
 
 class CarDetailActivity : AppCompatActivity() {
 
@@ -32,9 +32,17 @@ class CarDetailActivity : AppCompatActivity() {
         Log.d(TAG, "--> onCreate")
         progress_car_detail.visibility = View.VISIBLE
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val idCar = intent.getStringExtra("id")
 
+        btn_update.setOnClickListener { updateCar(idCar) }
+
         showCarDetail(idCar)
+    }
+
+    private fun updateCar(id: String) {
+        startActivity<CarUpdateActivity>("id" to id)
     }
 
 

@@ -14,12 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.detail.CarDetailActivity"
+        <activity android:name=".ui.update.CarUpdateActivity"/>
+        <activity android:name=".ui.add.CarAddActivity"
             android:parentActivityName=".ui.main.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.detail.CarDetailActivity" />
+        </activity>
 
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.detail.CarDetailActivity"/>
-
+        <activity
+            android:name=".ui.detail.CarDetailActivity"
+            android:parentActivityName=".ui.main.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.detail.CarDetailActivity" />
         </activity>
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
