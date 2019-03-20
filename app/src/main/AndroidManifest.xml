@@ -14,26 +14,43 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.update.CarUpdateActivity"/>
-        <activity android:name=".ui.add.CarAddActivity"
-            android:parentActivityName=".ui.main.MainActivity">
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.update.CarUpdateActivity"
+            android:label="@string/label_update_activity"
+            android:parentActivityName=".ui.detail.CarDetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.detail.CarDetailActivity" />
+
+        </activity>
+        <activity
+            android:name=".ui.add.CarAddActivity"
+            android:label="@string/label_add_activity"
+            android:parentActivityName=".ui.main.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.main.MainActivity" />
         </activity>
         <activity
             android:name=".ui.detail.CarDetailActivity"
+            android:label="@string/label_detail_activity"
             android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.detail.CarDetailActivity" />
         </activity>
         <activity android:name=".ui.main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

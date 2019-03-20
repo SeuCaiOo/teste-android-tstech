@@ -32,11 +32,10 @@ class CarAddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_car_add)
         Log.d(TAG, "--> onCreate")
-        supportActionBar?.title = "Adicionar Veículo"
 
         progress_car_add.visibility = View.INVISIBLE
 
-        btn_add.isEnabled = false
+        btn_add.isEnabled = true
 
         btn_add.setOnClickListener {
             addCar()
@@ -46,11 +45,11 @@ class CarAddActivity : AppCompatActivity() {
     }
 
     private fun addCar() {
-        val brand = edt_brand.text.toString()
-        val model = edt_model.text.toString()
+        val brand = edt_brand.text.toString().toUpperCase()
+        val model = edt_model.text.toString().toUpperCase()
         val year = edt_year.text.toString()
         val price = edt_year.text.toString()
-        val photo = edt_photo.text.toString()
+        val photo = edt_photo.text.toString().toUpperCase()
 
 
         val newCar = NewCar(year,photo, brand, model, price)
@@ -70,7 +69,7 @@ class CarAddActivity : AppCompatActivity() {
                     if (response.code() == 201) {
                         showMessage(response.body()!!.mensagem)
                     } else {
-                        showMessage("Erro ao adicionar novo carro")
+                        showMessage(getString(R.string.error_add))
                     }
 
 
@@ -98,7 +97,7 @@ class CarAddActivity : AppCompatActivity() {
         progress_car_add.visibility = View.INVISIBLE
 
         Snackbar.make(btn_add, message, Snackbar.LENGTH_INDEFINITE)
-            .setAction("Okay") {finish()}
+            .setAction(getString(R.string.confirm)) {finish()}
 
             .show()
 

@@ -4,6 +4,6 @@
 
     <item
         android:id="@+id/action_add"
-        android:title="Adicionar novo Carro"
+        android:title="@string/label_action_add_new_car"
         app:showAsAction="never"/>
 </menu>

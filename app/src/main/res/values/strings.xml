@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">iCarManager</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="label_detail_activity">Detalhes do Veiculo</string>
+    <string name="label_update_activity">Alterar Veiculo</string>
+    <string name="label_add_activity">Adicionar Veiculo</string>
+    <string name="txt_proposal_not_found">Nenhuma proposta foi encontrada para este veiculo !</string>
+    <string name="btn_add">Adicionar</string>
+    <string name="hint_photo">Foto</string>
+    <string name="hint_price">Preço</string>
+    <string name="hint_year">Ano/Modelo</string>
+    <string name="hint_model">Modelo</string>
+    <string name="hint_brand">Marca</string>
+    <string name="btn_save">Salvar</string>
+    <string name="label_action_add_new_car">Adicionar novo veiculo</string>
+    <string name="error_add">Erro ao adicionar novo veiculo</string>
+    <string name="confirm">Okay</string>
+    <string name="error_update">Erro ao alterar o veiculo</string>
+    <string name="btn_update">Alterar</string>
 </resources>

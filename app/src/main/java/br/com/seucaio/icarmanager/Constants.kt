@@ -6,5 +6,6 @@ class Constants {
 
         const val BASE_URL = "https://de94aa70-01e8-41b8-9ddb-52549ab77eb4.mock.pstmn.io/"
         const val BASE_URL_IMG = "http://www.tstech.com.br/android-teste/"
+        var ID_CAR = "0"
     }
 }

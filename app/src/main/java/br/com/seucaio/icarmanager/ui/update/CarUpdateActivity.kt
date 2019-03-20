@@ -1,8 +1,8 @@
 package br.com.seucaio.icarmanager.ui.update
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -27,14 +27,12 @@ class CarUpdateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_car_update)
         Log.d(TAG, "--> onCreate")
-        supportActionBar?.title = "Alterar Veículo"
 
         progress_car_update.visibility = View.VISIBLE
 
         val idCar = intent.getStringExtra("id")
 
         updateCar(idCar)
-
 
 
     }
@@ -54,8 +52,7 @@ class CarUpdateActivity : AppCompatActivity() {
 
                     Log.d(TAG, response.toString())
                 },
-                {
-                        error ->
+                { error ->
                     Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
                     Log.e(TAG, error.message, error)
                 },
@@ -76,7 +73,7 @@ class CarUpdateActivity : AppCompatActivity() {
 
     private fun confirmUpdate(car: Car) {
 
-        subscription = service.updateCarById(car.id,car)
+        subscription = service.updateCarById(car.id, car)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -85,7 +82,7 @@ class CarUpdateActivity : AppCompatActivity() {
                     if (response.code() == 201) {
                         showMessage(response.body()!!.mensagem)
                     } else {
-                        showMessage("Erro ao alterar o carro")
+                        showMessage(getString(R.string.error_update))
                     }
 
                     Log.d(TAG, car.toString())
@@ -105,16 +102,6 @@ class CarUpdateActivity : AppCompatActivity() {
                 }
             )
 
-//        Snackbar.make(btn_update, "Carro atu", Snackbar.LENGTH_LONG)
-//            .setAction("Action", null).show()
-
-        /*
-             fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-        */
-
     }
 
     private fun showMessage(message: String) {
@@ -122,26 +109,9 @@ class CarUpdateActivity : AppCompatActivity() {
         progress_car_update.visibility = View.INVISIBLE
 
         Snackbar.make(btn_update, message, Snackbar.LENGTH_INDEFINITE)
-            .setAction("Okay") {finish()}
+            .setAction(getString(R.string.confirm)) { finish() }
 
             .show()
-
-
-
-//        Snackbar.make(view, "", Snackbar.LENGTH_LONG)
-//            .setAction("Action", null).show()
-//
-//
-//        val snackbar = Snackbar.make(view, "Replace with your own action",
-//            Snackbar.LENGTH_LONG).setAction("Action", null)
-//        snackbar.setActionTextColor(Color.BLUE)
-//        val snackbarView = snackbar.view
-//        snackbarView.setBackgroundColor(Color.LTGRAY)
-//        val textView =
-//            snackbarView.findViewById(android.support.design.R.id.snackbar_text) as TextView
-//        textView.setTextColor(Color.BLUE)
-//        textView.textSize = 28f
-//        snackbar.show()
     }
 
 

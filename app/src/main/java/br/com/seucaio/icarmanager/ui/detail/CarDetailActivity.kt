@@ -17,18 +17,23 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_car_detail.*
-import kotlinx.android.synthetic.main.activity_car_detail.view.*
 import org.jetbrains.anko.startActivity
 
 class CarDetailActivity : AppCompatActivity() {
 
     val TAG = CarDetailActivity::class.java.simpleName
 
+    private val KEY_ID = "id_car"
+
     var subscription: Disposable? = null
 
     val service by lazy { ApiService.create() }
 
     lateinit var proposalAdapter: RecyclerView.Adapter<*>
+
+    var idCarDetail: String = ""
+
+    private var currentId = Constants.ID_CAR
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,13 +43,21 @@ class CarDetailActivity : AppCompatActivity() {
         txt_proposal_not_found.visibility = View.INVISIBLE
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         val idCar = intent.getStringExtra("id")
 
-        btn_update.setOnClickListener { updateCar(idCar) }
+        if (idCar != null) {
+           idCarDetail = idCar
+        } else {
+            idCarDetail = currentId
+        }
 
-        showCarDetail(idCar)
+        setIdCar(idCarDetail)
+
+        btn_update.setOnClickListener { updateCar(idCarDetail) }
+        showCarDetail(idCarDetail)
     }
+
+    fun setIdCar(id: String) { Constants.ID_CAR = id }
 
     private fun updateCar(id: String) {
         startActivity<CarUpdateActivity>("id" to id)
@@ -96,6 +109,7 @@ class CarDetailActivity : AppCompatActivity() {
                 }
             )
     }
+
 
 
     override fun onPause() {
