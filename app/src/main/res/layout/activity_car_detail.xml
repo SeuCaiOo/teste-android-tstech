@@ -72,6 +72,26 @@
         app:layout_constraintTop_toBottomOf="@+id/img_car"
         tools:text="R$ 80.000,00" />
 
+
+    <TextView
+        android:id="@+id/txt_proposal_not_found"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-black"
+        android:scrollbars="vertical"
+        android:text="Nenhuma proposta foi encontrada para este carro !"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_year_model"
+        tools:listitem="@layout/adapter_car_proposal" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_car_proposal"
         android:layout_width="0dp"

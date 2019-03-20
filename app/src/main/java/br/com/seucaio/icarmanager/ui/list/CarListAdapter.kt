@@ -11,9 +11,13 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.adapter_car_list.view.*
 
 class CarListAdapter(
-    private val cars: List<Car>,
+    private val cars: MutableList<Car>,
     private val listener: (Car) -> Unit
 ): RecyclerView.Adapter<CarListAdapter.CarListViewHolder>() {
+
+    private var removedPosition: Int = 0
+    private lateinit var removedItem: Car
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarListViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.adapter_car_list, parent, false)
@@ -24,8 +28,18 @@ class CarListAdapter(
         holder.bind(cars[position], listener)
     }
 
-
     override fun getItemCount() = cars.size
+
+    fun getItem(position: Int) = removedItem
+
+    fun removeItem(position: Int) {
+        removedItem = cars[position]
+        removedPosition = position
+
+        cars.removeAt(position)
+        notifyItemRemoved(position)
+
+    }
 
     class CarListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
